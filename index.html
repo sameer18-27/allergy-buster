@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllergyBuster | Complete Allergy Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Variables */
+        :root {
+            --primary: #4A6FA5; 
+            --secondary: #6B8C42; 
+            --accent: #FF7E5F;
+            --light: #F8F9FA; 
+            --dark: #212529; 
+            --danger: #DC3545;
+            --warning: #FFC107; 
+            --info: #17A2B8; 
+            --success: #28A745;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            background-color: rgba(74, 111, 165, 0.1);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3a5a8c;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a7a38;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.1), rgba(107, 140, 66, 0.1));
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #3a5a8c;
+        }
+
+        /* Tab System */
+        .tab-container {
+            margin: 40px 0;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Card Styles */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .allergy-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .allergy-type i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .medication-list {
+            margin-top: 15px;
+        }
+
+        .medication-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .medication-name {
+            font-weight: 600;
+        }
+
+        .medication-purpose {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .severity {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .mild { background-color: rgba(23, 162, 184, 0.2); color: var(--info); }
+        .moderate { background-color: rgba(255, 193, 7, 0.2); color: var(--warning); }
+        .severe { background-color: rgba(220, 53, 69, 0.2); color: var(--danger); }
+
+        /* Common Section Styles */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 40px 0 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin: 30px 0 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Symptom Checker */
+        .symptom-checker {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .option-btn {
+            padding: 12px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .option-btn:hover {
+            background: #e9ecef;
+        }
+
+        .option-btn.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .navigation-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        /* Body Map */
+        .body-map-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .body-map {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .body-map img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .body-area {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .body-area:hover {
+            opacity: 0.8;
+        }
+
+        .body-area.selected {
+            opacity: 0.8;
+            border: 2px solid var(--danger);
+        }
+
+        /* Emergency Section */
+        .emergency-section {
+            background: #FFF3F3;
+            border-left: 5px solid var(--danger);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 40px 0;
+        }
+
+        .emergency-section h3 {
+            color: var(--danger);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emergency-btn {
+            display: inline-block;
+            background: var(--danger);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .emergency-btn:hover {
+            background: #c82333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                display: block;
+                padding-bottom: 10px;
+            }
+            
+            .tab-btn {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-allergies"></i>
+                <h1>AllergyBuster</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#dashboard" class="active">Dashboard</a></li>
+                    <li><a href="#symptom-checker">Symptom Checker</a></li>
+                    <li><a href="#medications">Medications</a></li>
+                    <li><a href="#diary">Allergy Diary</a></li>
+                    <li><a href="#telehealth">Telehealth</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" id="dashboard">
+            <h2>Comprehensive Allergy Management</h2>
+            <p>Identify, treat, and manage your allergies with our complete toolkit</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Describe your symptoms or search medications...">
+                <button class="search-btn">Search</button>
+            </div>
+        </section>
+
+        <!-- Main Content Tabs -->
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="allergies">Allergy Types</button>
+                <button class="tab-btn" data-tab="medication-finder">Medication Finder</button>
+                <button class="tab-btn" data-tab="alerts">Local Alerts</button>
+                <button class="tab-btn" data-tab="first-aid">First Aid</button>
+            </div>
+
+            <!-- Allergy Types Tab -->
+            <div id="allergies" class="tab-content active">
+                <h2 class="section-title">Common Allergy Types</h2>
+                <div class="card-container">
+                    <!-- Pollen Allergy Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pollen Allergy</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="allergy-type">
+                                <i class="fas fa-tree"></i>
+                                <div>
+                                    <h4>Seasonal Allergic Rhinitis</h4>
+                                    <span class="severity mild">Mild to Moderate</span>
+                                </div>
+                            </div>
+                            <p>Sneezing, runny nose, itchy eyes caused by tree, grass, or weed pollen.</p>
+                            <div class="medication-list">
+                                <div class="medication-item">
+                                    <div>
+                                        <div class="medication-name">Cetirizine (Zyrtec)</div>
+                                        <div class="medication-purpose">Antihistamine</div>
+                                    </div>
+                                </div>
+                                <div class="medication-item">
+                                    <div>
+                                        <div class="medication-name">Fluticasone (Flonase)</div>
+                                        <div class="medication-purpose">Nasal corticosteroid</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Treatment Plan</a>
+                        </div>
+                    </div>
+
+                    <!-- Food Allergy Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Food Allergy</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="allergy-type">
+                                <i class="fas fa-utensils"></i>
+                                <div>
+                                    <h4>Common Food Allergens</h4>
+                                    <span class="severity moderate">Moderate to Severe</span>
+                                </div>
+                            </div>
+                            <p>Reactions to nuts, shellfish, eggs, milk, wheat, soy causing hives, swelling, or anaphylaxis.</p>
+                            <div class="medication-list">
+                                <div class="medication-item">
+                                    <div>
+                                        <div class="medication-name">Epinephrine (EpiPen)</div>
+                                        <div class="medication-purpose">Emergency treatment</div>
+                                    </div>
+                                </div>
+                                <div class="medication-item">
+                                    <div>
+                                        <div class="medication-name">Diphenhydramine (Benadryl)</div>
+                                        <div class="medication-purpose">Antihistamine</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Treatment Plan</a>
+                        </div>
+                    </div>
+
+                    <!-- Dust Mite Allergy Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Dust Mite Allergy</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="allergy-type">
+                                <i class="fas fa-bug"></i>
+                                <div>
+                                    <h4>Perennial Allergic Rhinitis</h4>
+                                    <span class="severity mild">Mild to Moderate</span>
+                                </div>
+                            </div>
+                            <p>Year-round symptoms including sneezing, runny nose, and asthma-like symptoms.</p>
+                            <div class="medication-list">
+                                <div class="medication-item">
+                                    <div>
+                                        <div class="medication-name">Loratadine (Claritin)</div>
+                                        <div class="medication-purpose">Antihistamine</div>
+                                    </div>
+                                </div>
+                                <div class="medication-item">
+                                    <div>
+                                        <div class="medication-name">Montelukast (Singulair)</div>
+                                        <div class="medication-purpose">Leukotriene modifier</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Treatment Plan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medication Finder Tab -->
+            <div id="medication-finder" class="tab-content">
+                <h2 class="section-title">Personalized Medication Finder</h2>
+                <div class="filter-section">
+                    <h3 class="section-subtitle">Filter Options</h3>
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="allergy-type">Allergy Type</label>
+                            <select id="allergy-type">
+                                <option value="">All Types</option>
+                                <option value="pollen">Pollen</option>
+                                <option value="food">Food</option>
+                                <option value="dust">Dust Mites</option>
+                                <option value="pet">Pet Dander</option>
+                                <option value="mold">Mold</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="severity">Severity</label>
+                            <select id="severity">
+                                <option value="">Any Severity</option>
+                                <option value="mild">Mild</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="severe">Severe</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="age-group">Age Group</label>
+                            <select id="age-group">
+                                <option value="">All Ages</option>
+                                <option value="child">Child (2-12)</option>
+                                <option value="teen">Teen (13-19)</option>
+                                <option value="adult">Adult (20-64)</option>
+                                <option value="senior">Senior (65+)</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="price-range">Price Range</label>
+                            <select id="price-range">
+                                <option value="">Any Price</option>
+                                <option value="low">$</option>
+                                <option value="medium">$$</option>
+                                <option value="high">$$$</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Find Medications</button>
+                </div>
+
+                <div class="card-container">
+                    <!-- Sample Medication Results -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cetirizine (Zyrtec)</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="medication-item">
+                                <div>
+                                    <div class="medication-name">Generic: Cetirizine HCl</div>
+                                    <div class="medication-purpose">Second-generation antihistamine</div>
+                                </div>
+                            </div>
+                            <p>Effective for pollen, dust mite, and pet allergies. Non-drowsy formula.</p>
+                            <div class="medication-info">
+                                <span><strong>Age:</strong> 6+ years</span>
+                                <span><strong>Price:</strong> $$</span>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-primary">View Details</button>
+                                <button class="btn btn-secondary">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Fluticasone (Flonase)</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="medication-item">
+                                <div>
+                                    <div class="medication-name">Generic: Fluticasone propionate</div>
+                                    <div class="medication-purpose">Nasal corticosteroid</div>
+                                </div>
+                            </div>
+                            <p>Reduces inflammation in nasal passages for seasonal allergies.</p>
+                            <div class="medication-info">
+                                <span><strong>Age:</strong> 4+ years</span>
+                                <span><strong>Price:</strong> $$</span>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-primary">View Details</button>
+                                <button class="btn btn-secondary">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Epinephrine (EpiPen)</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="medication-item">
+                                <div>
+                                    <div class="medication-name">Brand: EpiPen, Auvi-Q</div>
+                                    <div class="medication-purpose">Emergency epinephrine auto-injector</div>
+                                </div>
+                            </div>
+                            <p>For severe allergic reactions (anaphylaxis) to foods, insect stings, etc.</p>
+                            <div class="medication-info">
+                                <span><strong>Age:</strong> All ages</span>
+                                <span><strong>Price:</strong> $$$</span>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-primary">View Details</button>
+                                <button class="btn btn-secondary">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Local Alerts Tab -->
+            <div id="alerts" class="tab-content">
+                <h2 class="section-title">Local Allergy Alerts</h2>
+                <div class="alert-section">
+                    <div class="alert-header">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>High Pollen Alert - Today</h3>
+                    </div>
+                    <p><strong>Tree pollen levels are very high in your area.</strong> Consider staying indoors during peak hours (10AM-4PM) and keeping windows closed.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Your location: <strong>New York, NY</strong> | <a href="#">Change location</a></p>
+                </div>
+
+                <div class="alert-grid">
+                    <div class="alert-card">
+                        <h3><i class="fas fa-chart-line"></i> Pollen Forecast</h3>
+                        <p>Next 3 days: High (Today), Moderate (Tomorrow), Low (Day 3)</p>
+                        <button class="btn btn-secondary">View Full Forecast</button>
+                    </div>
+                    <div class="alert-card">
+                        <h3><i class="fas fa-wind"></i> Air Quality</h3>
+                        <p>Current AQI: 65 (Moderate) - May exacerbate allergy symptoms</p>
+                        <button class="btn btn-secondary">Air Quality Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- First Aid Tab -->
+            <div id="first-aid" class="tab-content">
+                <h2 class="section-title">First Aid & Emergency Procedures</h2>
+                <div class="emergency-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Severe Allergic Reaction (Anaphylaxis)</h3>
+                    <p>Recognize these signs and act immediately:</p>
+                    <ul>
+                        <li>Difficulty breathing or wheezing</li>
+                        <li>Swelling of the tongue or throat</li>
+                        <li>Dizziness or fainting</li>
+                        <li>Rapid pulse</li>
+                        <li>Hives over large areas of the body</li>
+                    </ul>
+                    <a href="#" class="emergency-btn"><i class="fas fa-phone-alt"></i> Call Emergency Services</a>
+                </div>
+
+                <div class="first-aid-section">
+                    <h3 class="section-subtitle">How to Use an Epinephrine Auto-Injector</h3>
+                    <div class="video-container">
+                        <!-- Placeholder for video -->
+                        <div class="video-placeholder">
+                            <p>[Epinephrine Injection Tutorial Video]</p>
+                        </div>
+                    </div>
+                    <div class="step-by-step">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h4>Remove the safety cap</h4>
+                                <p>Grip the auto-injector firmly and pull off the blue safety release with your other hand.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h4>Place against outer thigh</h4>
+                                <p>Press the orange tip against the outer thigh at a 90-degree angle (can be done through clothing).</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h4>Administer the injection</h4>
+                                <p>Push down firmly until you hear a "click" and hold for 3 seconds to deliver the medication.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div>
+                                <h4>Seek immediate medical help</h4>
+                                <p>Call emergency services even if symptoms improve. The effects may wear off and symptoms may return.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Symptom Checker Section -->
+        <section id="symptom-checker">
+            <h2 class="section-title">Interactive Symptom Checker</h2>
+            <div class="symptom-checker">
+                <div class="question active">
+                    <h3>Where are you experiencing symptoms?</h3>
+                    <div class="body-map-container">
+                        <div class="body-map">
+                            <img src="https://i.imgur.com/JqYeZvn.png" alt="Human body outline">
+                            <div class="body-area eyes-nose" title="Eyes/Nose"></div>
+                            <div class="body-area mouth-throat" title="Mouth/Throat"></div>
+                            <div class="body-area chest" title="Chest"></div>
+                            <div class="body-area left-arm" title="Left Arm"></div>
+                            <div class="body-area right-arm" title="Right Arm"></div>
+                            <div class="body-area torso" title="Torso"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>What symptoms are you experiencing?</h3>
+                    <div class="options">
+                        <div class="option-btn">Sneezing</div>
+                        <div class="option-btn">Runny nose</div>
+                        <div class="option-btn">Itchy/watery eyes</div>
+                        <div class="option-btn">Skin rash/hives</div>
+                        <div class="option-btn">Swelling</div>
+                        <div class="option-btn">Difficulty breathing</div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <h3>When did symptoms start?</h3>
+                    <div class="options">
+                        <div class="option-btn">Less than 1 hour ago</div>
+                        <div class="option-btn">Today</div>
+                        <div class="option-btn">Within this week</div>
+                        <div class="option-btn">Ongoing for weeks</div>
+                    </div>
+                </div>
+                
+                <div class="navigation-btns">
+                    <button class="btn btn-secondary" id="prev-btn" disabled>Previous</button>
+                    <button class="btn btn-primary" id="next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Allergy Diary Section -->
+        <section id="diary">
+            <h2 class="section-title">Allergy Symptom Diary</h2>
+            <div class="diary-container">
+                <div class="diary-header">
+                    <h3>Your Symptom Log</h3>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Add New Entry</button>
+                </div>
+                
+                <div class="diary-entry">
+                    <div class="diary-date">Today, June 15, 2023</div>
+                    <div class="diary-symptoms">
+                        <span>Sneezing</span>
+                        <span>Runny nose</span>
+                        <span>Itchy eyes</span>
+                    </div>
+                    <p>Went for a walk in the park in the morning. Symptoms started about 30 minutes after being outside.</p>
+                    <div class="diary-medication">
+                        <i class="fas fa-pills"></i> Took Cetirizine at 11:30 AM
+                    </div>
+                </div>
+                
+                <div class="diary-entry">
+                    <div class="diary-date">June 12, 2023</div>
+                    <div class="diary-symptoms">
+                        <span>Skin rash</span>
+                    </div>
+                    <p>Tried new laundry detergent. Developed red, itchy patches on arms and torso about 2 hours after wearing washed clothes.</p>
+                </div>
+                
+                <div class="diary-actions">
+                    <button class="btn btn-secondary"><i class="fas fa-download"></i> Export Diary</button>
+                    <button class="btn btn-secondary"><i class="fas fa-share-alt"></i> Share with Doctor</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Telehealth Section -->
+        <section id="telehealth">
+            <h2 class="section-title">Connect with Allergy Specialists</h2>
+            <div class="telehealth-section">
+                <p>Schedule a virtual consultation with board-certified allergists and immunologists</p>
+                <button class="btn btn-primary"><i class="fas fa-video"></i> Start Video Consultation</button>
+                
+                <div class="doctor-list">
+                    <div class="doctor-card">
+                        <img src="https://i.imgur.com/JqYeZvn.png" alt="Dr. Smith" class="doctor-img">
+                        <h3>Dr. Sarah Smith</h3>
+                        <p>Allergy & Immunology Specialist</p>
+                        <p><i class="fas fa-star"></i> 4.9 (245 reviews)</p>
+                        <button class="btn btn-secondary">View Profile</button>
+                    </div>
+                    
+                    <div class="doctor-card">
+                        <img src="https://i.imgur.com/JqYeZvn.png" alt="Dr. Johnson" class="doctor-img">
+                        <h3>Dr. Michael Johnson</h3>
+                        <p>Pediatric Allergist</p>
+                        <p><i class="fas fa-star"></i> 4.8 (189 reviews)</p>
+                        <button class="btn btn-secondary">View Profile</button>
+                    </div>
+                    
+                    <div class="doctor-card">
+                        <img src="https://i.imgur.com/JqYeZvn.png" alt="Dr. Lee" class="doctor-img">
+                        <h3>Dr. Jennifer Lee</h3>
+                        <p>Allergy & Asthma Specialist</p>
+                        <p><i class="fas fa-star"></i> 4.7 (156 reviews)</p>
+                        <button class="btn btn-secondary">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medication Reminders Section -->
+        <section class="reminder-section">
+            <h2 class="section-title">Medication Reminders</h2>
+            <div class="reminder-container">
+                <div class="reminder-header">
+                    <h3>Your Scheduled Medications</h3>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Add Reminder</button>
+                </div>
+                
+                <div class="reminder-item">
+                    <div class="reminder-info">
+                        <div class="medication-name">Cetirizine (Zyrtec)</div>
+                        <div class="medication-purpose">10mg tablet - Antihistamine</div>
+                    </div>
+                    <div class="reminder-time">Daily at 8:00 AM</div>
+                    <div class="reminder-actions">
+                        <i class="fas fa-edit" title="Edit"></i>
+                        <i class="fas fa-trash" title="Delete"></i>
+                    </div>
+                </div>
+                
+                <div class="reminder-item">
+                    <div class="reminder-info">
+                        <div class="medication-name">Fluticasone (Flonase)</div>
+                        <div class="medication-purpose">Nasal spray - 1 spray each nostril</div>
+                    </div>
+                    <div class="reminder-time">Daily at 8:00 AM</div>
+                    <div class="reminder-actions">
+                        <i class="fas fa-edit" title="Edit"></i>
+                        <i class="fas fa-trash" title="Delete"></i>
+                    </div>
+                </div>
+                
+                <div class="reminder-item">
+                    <div class="reminder-info">
+                        <div class="medication-name">Albuterol Inhaler</div>
+                        <div class="medication-purpose">As needed for asthma symptoms</div>
+                    </div>
+                    <div class="reminder-time">No fixed schedule</div>
+                    <div class="reminder-actions">
+                        <i class="fas fa-edit" title="Edit"></i>
+                        <i class="fas fa-trash" title="Delete"></i>
+                    </div>
+                </div>
+                
+                <div class="reminder-settings">
+                    <button class="btn btn-secondary"><i class="fas fa-bell"></i> Notification Settings</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Section -->
+        <div class="emergency-section">
+            <h3><i class="fas fa-exclamation-triangle"></i> Emergency Allergy Assistance</h3>
+            <p>If you're experiencing a severe allergic reaction (anaphylaxis) with difficulty breathing, swelling of the face or throat, or dizziness:</p>
+            <div class="emergency-actions">
+                <a href="#" class="emergency-btn"><i class="fas fa-phone-alt"></i> Call 911 (US)</a>
+                <a href="#" class="emergency-btn"><i class="fas fa-map-marker-alt"></i> Find Nearest Hospital</a>
+                <a href="#" class="emergency-btn"><i class="fas fa-first-aid"></i> How to Use EpiPen</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 AllergyCare Pro | For educational purposes only | Consult a healthcare professional for medical advice</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Symptom checker navigation
+        const questions = document.querySelectorAll('.question');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            questions.forEach((q, i) => {
+                q.classList.toggle('active', i === index);
+            });
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.textContent = index === questions.length - 1 ? 'Get Results' : 'Next';
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                alert('Symptom analysis complete. In a real app, this would show results.');
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Body map interaction
+        document.querySelectorAll('.body-area').forEach(area => {
+            area.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+
+        // Option selection in symptom checker
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllergyCare Pro | Complete Allergy Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Existing styles remain the same */
+
+        /* NEW: Enhanced UI Elements */
+        .smooth-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* NEW: Loading Spinner */
+        .loader {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #fff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+
+        /* NEW: Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* NEW: Input Validation States */
+        .valid-input {
+            border-color: var(--success) !important;
+            background: rgba(40, 167, 69, 0.05);
+        }
+
+        .invalid-input {
+            border-color: var(--danger) !important;
+            background: rgba(220, 53, 69, 0.05);
+        }
+
+        /* NEW: Progress Indicator */
+        .progress-bar {
+            height: 4px;
+            background: #eee;
+            margin: 20px 0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        /* NEW: Microinteractions */
+        .option-btn.selected {
+            transform: scale(1.02);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .doctor-card:hover .doctor-img {
+            transform: scale(1.05);
+        }
+
+        /* NEW: Scroll Animation */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px) }
+            to { opacity: 1; transform: translateY(0) }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: slideUp 0.6s forwards;
+        }
+
+        /* NEW: Accessibility Improvements */
+        button:focus, a:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Add these new styles below existing ones */
+        .doctor-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* Enhanced Card Shadows */
+        .card {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* NEW: Success Message */
+        .success-message {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add FAB button -->
+    <div class="fab smooth-transition" title="Emergency Help">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <!-- Add Progress Bar in Symptom Checker -->
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <!-- Add Success Message -->
+    <div class="success-message">
+        <i class="fas fa-check-circle"></i> Your entry has been saved successfully
+    </div>
+
+    <!-- Previous content remains the same -->
+
+    <script>
+        // Existing JavaScript remains
+
+        // NEW: Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+
+        // NEW: Loading State
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            this.innerHTML = '<div class="loader"></div>';
+            setTimeout(() => {
+                this.innerHTML = 'Search';
+                document.querySelector('.success-message').style.display = 'block';
+            }, 1500);
+        });
+
+        // NEW: Progress Bar Update
+        function updateProgress() {
+            const progress = (currentQuestion + 1) / questions.length * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+        }
+
+        // Update progress bar when questions change
+        nextBtn.addEventListener('click', () => {
+            updateProgress();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            updateProgress();
+        });
+
+        // NEW: Floating Action Button Functionality
+        document.querySelector('.fab').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // NEW: Input Validation
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            if (e.target.value.length > 2) {
+                e.target.classList.add('valid-input');
+                e.target.classList.remove('invalid-input');
+            } else {
+                e.target.classList.add('invalid-input');
+                e.target.classList.remove('valid-input');
+            }
+        });
+
+        // NEW: Dynamic Tooltips
+        document.querySelectorAll('[data-tooltip]').forEach(el => {
+            new bootstrap.Tooltip(el); // Would need Bootstrap for full functionality
+        });
+    </script>
+</body>
+</html>
