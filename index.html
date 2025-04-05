@@ -45,7 +45,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 25px 0;
             margin-bottom: 30px;
             border-bottom: 1px solid #eee;
         }
@@ -68,7 +68,7 @@
 
         nav ul {
             display: flex;
-            gap: 20px;
+            gap: 10px;
             list-style: none;
         }
 
@@ -922,9 +922,428 @@
 html {
   scroll-behavior: smooth;
 }
+/* Auth Modal Styles */
+.auth-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+.auth-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--dark);
+}
+
+.auth-content h2 {
+    color: var(--primary);
+    margin-bottom: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+.forgot-password {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.checkbox-group a {
+    color: var(--primary);
+}
+
+/* User Profile in Header */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 15px;
+    width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 8px 0;
+    color: var(--dark);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.user-dropdown a:hover {
+    color: var(--primary);
+}
+
+.user-dropdown a i {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+}
+
+.user-profile:hover .user-dropdown {
+    display: block;
+}
+
+/* Login/Signup Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons .btn {
+    padding: 8px 15px;
+}
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: rgba(74, 111, 165, 0.1);
+}
+nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    nav ul {
+        margin-right: auto; /* Pushes auth buttons to the right */
+    }
+
+    .auth-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .user-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 15px;
+        width: 200px;
+        display: none;
+        z-index: 1000;
+    }
+
+    .user-dropdown a {
+        display: block;
+        padding: 8px 0;
+        color: var(--dark);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .user-dropdown a:hover {
+        color: var(--primary);
+    }
+
+    .user-profile:hover .user-dropdown {
+        display: block;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+    }
+
+    .btn-outline:hover {
+        background: rgba(74, 111, 165, 0.1);
+    }
+    /* ===== END OF NEW CSS ADDITION ===== */
+    /* ===== SCANNER STYLES ===== */
+.scanner-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.scanner-preview {
+    width: 100%;
+    max-height: 400px;
+    margin: 20px 0;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scanner-preview video, 
+.scanner-preview canvas {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.scanner-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.scan-results {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.results-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.detected-text, .allergy-matches {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.allergy-match {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: rgba(220, 53, 69, 0.1);
+    border-left: 3px solid var(--danger);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.no-allergies {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 3px solid var(--success);
+    border-radius: 4px;
+}
+
+.scanner-loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.scanner-loading .loader {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+    margin: 0 auto 15px;
+}
+
+@media (max-width: 768px) {
+    .results-container {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 </head>
 <body>
+    <!-- Login/Signup Modals -->
+<div class="auth-modal" id="login-modal">
+    <div class="auth-content">
+        <span class="close-modal">&times;</span>
+        <h2><i class="fas fa-user-circle"></i> Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="auth-footer">
+                Don't have an account? <a href="#" class="switch-to-signup">Sign up</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="auth-modal" id="signup-modal">
+    <div class="auth-content">
+        <span class="close-modal">&times;</span>
+        <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm">Confirm Password</label>
+                <input type="password" id="signup-confirm" required>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms-agree" required>
+                <label for="terms-agree">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Account</button>
+            <div class="auth-footer">
+                Already have an account? <a href="#" class="switch-to-login">Login</a>
+            </div>
+        </form>
+    </div>
+</div>
     <div class="container">
         <header>
             <div class="logo">
@@ -937,8 +1356,24 @@ html {
                     <li><a href="#symptom-checker" class="nav-link" data-section="symptom-checker">Symptom Checker</a></li>
                     <li><a href="#medications" class="nav-link" data-section="medications">Medications</a></li>
                     <li><a href="#diary" class="nav-link" data-section="diary">Allergy Diary</a></li>
+                    <li><a href="#scanner" class="nav-link" data-section="scanner" id="scanner-nav">
+                        <i class="fas fa-camera"></i> Scanner
+                    </a></li>
                     <li><a href="#telehealth" class="nav-link" data-section="telehealth">Telehealth</a></li>
                 </ul>
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn btn-outline" id="login-btn">Login</button>
+                    <button class="btn btn-primary" id="signup-btn">Sign Up</button>
+                </div>
+                <div class="user-profile" id="user-profile" style="display: none;">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span id="username-display">User</span>
+                    <div class="user-dropdown">
+                        <a href="#"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
             </nav>
         </header>
 
@@ -1355,6 +1790,71 @@ html {
                 </div>
             </div>
         </div>
+        <!-- Scanner Section -->
+    <div id="scanner" class="content-section">
+        <h2 class="section-title">Ingredients Scanner</h2>
+        <div class="scanner-container">
+            <div class="scanner-intro">
+                <i class="fas fa-camera-retro"></i>
+                <h3>Scan Product Labels for Allergens</h3>
+                <p>Use your camera or upload an image to check for ingredients that may trigger your allergies</p>
+            </div>
+            
+            <div class="scanner-guide">
+                <p><strong>How it works:</strong> Point your camera at the ingredients list or upload a clear photo. We'll analyze the text and highlight any potential allergens based on your profile.</p>
+            </div>
+            
+            <div class="scanner-interface">
+                <div class="scanner-preview" id="scanner-preview">
+                    <video id="scanner-video" autoplay playsinline></video>
+                    <canvas id="scanner-canvas" style="display:none;"></canvas>
+                    <div id="scanner-placeholder">
+                        <i class="fas fa-camera" style="font-size: 3rem; color: #ccc;"></i>
+                        <p>Camera preview will appear here</p>
+                    </div>
+                </div>
+                
+                <div class="scanner-loading" id="scanner-loading">
+                    <div class="loader"></div>
+                    <p>Processing image...</p>
+                </div>
+                
+                <div class="scanner-controls">
+                    <button class="btn btn-primary" id="start-scanner">
+                        <i class="fas fa-camera"></i> Start Scanner
+                    </button>
+                    <button class="btn btn-secondary" id="upload-image">
+                        <i class="fas fa-upload"></i> Upload Image
+                    </button>
+                    <button class="btn btn-outline" id="cancel-scan" style="display:none;">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <input type="file" id="file-input" accept="image/*" style="display:none;">
+                </div>
+            </div>
+            
+            <div class="scan-results" id="scan-results" style="display:none;">
+                <h3><i class="fas fa-search"></i> Scan Results</h3>
+                <div class="results-container">
+                    <div class="detected-text">
+                        <h4>Detected Ingredients:</h4>
+                        <div id="ingredients-text" class="ingredients-text"></div>
+                    </div>
+                    <div class="allergy-matches">
+                        <h4>Allergy Matches:</h4>
+                        <div id="allergy-matches"></div>
+                    </div>
+                </div>
+                
+                <div class="scan-actions" style="margin-top: 20px; text-align: center;">
+                    <button class="btn btn-primary" id="scan-again">
+                        <i class="fas fa-redo"></i> Scan Another Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
         <!-- Telehealth Section -->
         <div id="telehealth" class="content-section">
@@ -1733,6 +2233,306 @@ html {
                 console.log("Selected area:", selectedArea);
             });
         });
+        // Auth System
+const loginModal = document.getElementById('login-modal');
+const signupModal = document.getElementById('signup-modal');
+const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
+const closeModalBtns = document.querySelectorAll('.close-modal');
+const switchToSignup = document.querySelector('.switch-to-signup');
+const switchToLogin = document.querySelector('.switch-to-login');
+const authButtons = document.getElementById('auth-buttons');
+const userProfile = document.getElementById('user-profile');
+const logoutBtn = document.getElementById('logout-btn');
+const userAvatar = document.getElementById('user-avatar');
+const usernameDisplay = document.getElementById('username-display');
+
+// Check if user is logged in (in a real app, this would check with your backend)
+function checkAuthStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        authButtons.style.display = 'none';
+        userProfile.style.display = 'flex';
+        userAvatar.textContent = userData.name ? userData.name.charAt(0).toUpperCase() : 'U';
+        usernameDisplay.textContent = userData.name || 'User';
+    } else {
+        authButtons.style.display = 'flex';
+        userProfile.style.display = 'none';
+    }
+}
+
+// Show login modal
+loginBtn.addEventListener('click', () => {
+    loginModal.style.display = 'block';
+    signupModal.style.display = 'none';
+});
+
+// Show signup modal
+signupBtn.addEventListener('click', () => {
+    signupModal.style.display = 'block';
+    loginModal.style.display = 'none';
+});
+
+// Switch to signup from login
+switchToSignup.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginModal.style.display = 'none';
+    signupModal.style.display = 'block';
+});
+
+// Switch to login from signup
+switchToLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    signupModal.style.display = 'none';
+    loginModal.style.display = 'block';
+});
+
+// Close modals
+closeModalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        loginModal.style.display = 'none';
+        signupModal.style.display = 'none';
+    });
+});
+
+// Close when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === loginModal) loginModal.style.display = 'none';
+    if (e.target === signupModal) signupModal.style.display = 'none';
+});
+
+// Login form submission
+document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    
+    // In a real app, you would validate and send to your backend
+    console.log('Login attempt with:', email, password);
+    
+    // Simulate successful login
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userData', JSON.stringify({
+        email: email,
+        name: email.split('@')[0] // Use the part before @ as name
+    }));
+    
+    loginModal.style.display = 'none';
+    checkAuthStatus();
+    showSuccessMessage('Logged in successfully!');
+});
+
+// Signup form submission
+document.getElementById('signup-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirm').value;
+    
+    // Simple validation
+    if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+    }
+    
+    // In a real app, you would send this to your backend
+    console.log('Signup with:', name, email, password);
+    
+    // Simulate successful signup and login
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userData', JSON.stringify({
+        name: name,
+        email: email
+    }));
+    
+    signupModal.style.display = 'none';
+    checkAuthStatus();
+    showSuccessMessage('Account created successfully!');
+});
+
+// Logout
+logoutBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userData');
+    checkAuthStatus();
+    showSuccessMessage('Logged out successfully!');
+});
+
+// Show success message
+function showSuccessMessage(message) {
+    const successMsg = document.querySelector('.success-message');
+    successMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    successMsg.style.display = 'block';
+    setTimeout(() => {
+        successMsg.style.display = 'none';
+    }, 3000);
+}
+
+// Check auth status on page load
+checkAuthStatus();
+// ===== SCANNER IMPLEMENTATION =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Scanner elements
+    const startScannerBtn = document.getElementById('start-scanner');
+    const uploadImageBtn = document.getElementById('upload-image');
+    const fileInput = document.getElementById('file-input');
+    const scannerVideo = document.getElementById('scanner-video');
+    const scannerCanvas = document.getElementById('scanner-canvas');
+    const scannerPreview = document.getElementById('scanner-preview');
+    const scannerPlaceholder = document.getElementById('scanner-placeholder');
+    const scannerLoading = document.getElementById('scanner-loading');
+    const scanResults = document.getElementById('scan-results');
+    const ingredientsText = document.getElementById('ingredients-text');
+    const allergyMatches = document.getElementById('allergy-matches');
+    const scanAgainBtn = document.getElementById('scan-again');
+    
+    let stream = null;
+    
+    // Sample user allergies (replace with your actual user data)
+    const userAllergies = [
+        'peanuts', 'tree nuts', 'dairy', 'gluten', 'soy', 'eggs', 'shellfish'
+    ];
+    
+    // Start camera scanner
+    startScannerBtn.addEventListener('click', async function() {
+        try {
+            scannerLoading.style.display = 'block';
+            scannerPlaceholder.style.display = 'none';
+            
+            stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: 'environment' } 
+            });
+            
+            scannerVideo.srcObject = stream;
+            scannerVideo.style.display = 'block';
+            startScannerBtn.textContent = 'Capture Image';
+            startScannerBtn.onclick = captureImage;
+            scannerLoading.style.display = 'none';
+        } catch (err) {
+            console.error('Camera error:', err);
+            alert('Could not access camera. Please check permissions.');
+            scannerLoading.style.display = 'none';
+            scannerPlaceholder.style.display = 'flex';
+        }
+    });
+    
+    // Upload image alternative
+    uploadImageBtn.addEventListener('click', function() {
+        fileInput.click();
+    });
+    
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+                scannerVideo.style.display = 'none';
+                scannerPlaceholder.style.display = 'none';
+                const img = new Image();
+                img.onload = function() {
+                    scannerCanvas.width = img.width;
+                    scannerCanvas.height = img.height;
+                    const ctx = scannerCanvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    scannerCanvas.style.display = 'block';
+                    processImage(scannerCanvas);
+                };
+                img.src = event.target.result;
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    // Capture image from camera
+    function captureImage() {
+        scannerCanvas.width = scannerVideo.videoWidth;
+        scannerCanvas.height = scannerVideo.videoHeight;
+        const ctx = scannerCanvas.getContext('2d');
+        ctx.drawImage(scannerVideo, 0, 0, scannerCanvas.width, scannerCanvas.height);
+        
+        // Stop camera stream
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+        
+        scannerVideo.style.display = 'none';
+        scannerCanvas.style.display = 'block';
+        startScannerBtn.style.display = 'none';
+        
+        processImage(scannerCanvas);
+    }
+    
+    // Process image with OCR
+    function processImage(canvas) {
+        showLoading(true);
+        
+        // Simulate OCR processing (replace with actual API call)
+        setTimeout(() => {
+            const simulatedText = `
+            Ingredients: Enriched flour (wheat flour, niacin, reduced iron, 
+            thiamin mononitrate, riboflavin, folic acid), peanuts, sugar, 
+            palm oil, high fructose corn syrup, salt, whey (milk), soy lecithin, 
+            baking soda, artificial flavor.
+            `;
+            
+            ingredientsText.textContent = simulatedText;
+            checkForAllergens(simulatedText);
+            scanResults.style.display = 'block';
+            showLoading(false);
+        }, 2000);
+    }
+    
+    // Check for allergen matches
+    function checkForAllergens(text) {
+        const lowerText = text.toLowerCase();
+        const foundAllergens = [];
+        
+        userAllergies.forEach(allergen => {
+            if (lowerText.includes(allergen.toLowerCase())) {
+                foundAllergens.push(allergen);
+            }
+        });
+        
+        if (foundAllergens.length > 0) {
+            allergyMatches.innerHTML = foundAllergens.map(allergen => 
+                `<div class="allergy-match">
+                    <i class="fas fa-exclamation-triangle"></i> ${allergen}
+                </div>`
+            ).join('');
+        } else {
+            allergyMatches.innerHTML = `
+                <div class="no-allergies">
+                    <i class="fas fa-check-circle"></i> 
+                    No allergens detected based on your profile.
+                </div>
+            `;
+        }
+    }
+    
+    function showLoading(show) {
+        if (show) {
+            scannerLoading.style.display = 'block';
+        } else {
+            scannerLoading.style.display = 'none';
+        }
+    }
+    
+    // Scan again button
+    scanAgainBtn.addEventListener('click', function() {
+        scanResults.style.display = 'none';
+        scannerCanvas.style.display = 'none';
+        scannerPlaceholder.style.display = 'flex';
+        startScannerBtn.textContent = 'Start Scanner';
+        startScannerBtn.onclick = startScannerBtn.click;
+        startScannerBtn.style.display = 'inline-block';
+        fileInput.value = '';
+    });
+});
     </script>
 </body>
 </html>
