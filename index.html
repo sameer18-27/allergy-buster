@@ -28,63 +28,125 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Styles */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee;
-        }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 0;
+        margin-bottom: 30px;
+        background-color: #f5f5f5; /* Light gray background */
+        border-radius: 0 0 50px 50px; /* Curved bottom edges */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
 
+    /* Optional: Add a subtle gradient to the gray */
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+        z-index: -1;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 30px; /* Add some spacing from the left edge */
+    }
+
+    .logo i {
+        color: #4A6FA5; /* Keeping the original icon color */
+        font-size: 2rem;
+    }
+
+    .logo h1 {
+        font-size: 1.8rem;
+        color: #333; /* Darker text for better contrast on gray */
+        font-weight: 700;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 12px; /* Slightly more spacing between nav items */
+        list-style: none;
+        margin-right: 30px; /* Add some spacing from the right edge */
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #555; /* Dark gray text */
+        font-weight: 600; /* Slightly bolder */
+        transition: all 0.3s;
+        padding: 8px 15px; /* More padding for better click area */
+        border-radius: 20px; /* Rounded corners for nav items */
+    }
+
+    nav a:hover, nav a.active {
+        color: white;
+        background-color: #4A6FA5; /* Original primary color for contrast */
+    }
+
+    /* Auth buttons styling */
+    .auth-buttons .btn {
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .auth-buttons .btn-outline {
+        border: 2px solid #4A6FA5;
+    }
+
+    /* User profile styling */
+    .user-profile {
+        background-color: white;
+        padding: 5px 15px 5px 5px;
+        border-radius: 30px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+    }
+
+    .user-profile:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 0;
+            border-radius: 0 0 30px 30px;
+        }
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-left: 0;
+            margin-bottom: 10px;
         }
-
-        .logo i {
-            color: var(--primary);
-            font-size: 2rem;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-
+        
         nav ul {
-            display: flex;
+            flex-direction: column;
             gap: 10px;
-            list-style: none;
+            align-items: center;
+            margin-right: 0;
         }
-
+        
         nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 6px 12px;
         }
-
-        nav a:hover, nav a.active {
-            color: var(--primary);
-            background-color: rgba(74, 111, 165, 0.1);
-        }
+    }
 
         /* Button Styles */
         .btn {
@@ -1118,12 +1180,13 @@ html {
 nav {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
     }
 
     nav ul {
         margin-right: auto; /* Pushes auth buttons to the right */
     }
+    
 
     .auth-buttons {
         display: flex;
@@ -1133,7 +1196,7 @@ nav {
     .user-profile {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 5px;
         position: relative;
         cursor: pointer;
     }
@@ -2114,38 +2177,38 @@ nav {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1001;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* dim background */
+  }
 
-.modal-content {
-    background-color: white;
-    margin: 10% auto;
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
     padding: 30px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    position: relative;
-}
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px; /* smaller width */
+    transform: scale(0.92); /* zoomed out */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.2s ease-in-out;
+  }
 
-.close-modal {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 1.5rem;
+  .close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
-    color: #666;
-    transition: color 0.3s;
-}
+  }
 
-.close-modal:hover {
-    color: var(--dark);
-}
+  .close-modal:hover {
+    color: #000;
+  }
 
 .form-group {
     margin-bottom: 20px;
@@ -2209,6 +2272,356 @@ nav {
     .modal-content {
         margin: 20% auto;
         width: 90%;
+    }
+}
+/* Elegant Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 650px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-header .subtitle {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin: 5px 0 0;
+}
+
+.close-modal {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 1.5rem;
+    color: #95a5a6;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #e74c3c;
+}
+
+/* Form Styles */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+    font-size: 0.95rem;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+.input-with-icon input {
+    padding-left: 35px !important;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background-color: #f9f9f9;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    background-color: #fff;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.select-wrapper i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #95a5a6;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Checkbox Styles */
+.symptoms-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.elegant-checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #e0e0e0;
+}
+
+.elegant-checkbox:hover {
+    background-color: #f1f3f5;
+    border-color: #d0d0d0;
+}
+
+.elegant-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    margin-right: 12px;
+    transition: all 0.2s;
+}
+
+.elegant-checkbox input:checked ~ .checkmark {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.elegant-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.label-text {
+    flex-grow: 1;
+    color: #2c3e50;
+}
+
+.elegant-checkbox i {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+/* Medication Entry Styles */
+.medication-entries-container {
+    margin-bottom: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.medication-entry {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.medication-entry-fields {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.remove-medication {
+    background: transparent;
+    border: none;
+    color: #95a5a6;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 5px;
+}
+
+.remove-medication:hover {
+    color: #e74c3c;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #34495e;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background-color: #e9ecef;
+    border-color: #d0d0d0;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #3498db;
+    color: #3498db;
+}
+
+.btn-outline:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+}
+
+.btn-icon {
+    padding: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 10% auto;
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .symptoms-checkboxes {
+        grid-template-columns: 1fr;
+    }
+    
+    .medication-entry-fields {
+        grid-template-columns: 1fr;
     }
 }
     </style>
@@ -3154,6 +3567,128 @@ nav {
         </div>
     </div>
 </div>
+<!-- Modal HTML -->
+<div class="modal" id="diary-entry-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <h3><i class="fas fa-book-medical"></i> New Diary Entry</h3>
+            <p class="subtitle">Track your allergy symptoms and treatments</p>
+        </div>
+        
+        <form id="diary-entry-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="entry-date">Date</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="entry-date" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="entry-severity">Severity</label>
+                    <div class="select-wrapper">
+                        <select id="entry-severity" required>
+                            <option value="">Select severity...</option>
+                            <option value="mild">Mild</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="severe">Severe</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Symptoms</label>
+                <div class="symptoms-checkboxes">
+                    <label class="elegant-checkbox">
+                        <input type="checkbox" name="symptoms" value="sneezing">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Sneezing</span>
+                        <i class="fas fa-wind"></i>
+                    </label>
+                    <label class="elegant-checkbox">
+                        <input type="checkbox" name="symptoms" value="runny-nose">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Runny nose</span>
+                        <i class="fas fa-tint"></i>
+                    </label>
+                    <label class="elegant-checkbox">
+                        <input type="checkbox" name="symptoms" value="itchy-eyes">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Itchy eyes</span>
+                        <i class="fas fa-eye"></i>
+                    </label>
+                    <label class="elegant-checkbox">
+                        <input type="checkbox" name="symptoms" value="rash">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Skin rash</span>
+                        <i class="fas fa-allergies"></i>
+                    </label>
+                    <label class="elegant-checkbox">
+                        <input type="checkbox" name="symptoms" value="swelling">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Swelling</span>
+                        <i class="fas fa-lips"></i>
+                    </label>
+                    <label class="elegant-checkbox">
+                        <input type="checkbox" name="symptoms" value="breathing">
+                        <span class="checkmark"></span>
+                        <span class="label-text">Breathing difficulty</span>
+                        <i class="fas fa-lungs"></i>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="entry-notes">Notes</label>
+                <textarea id="entry-notes" rows="4" placeholder="Describe your symptoms, possible triggers, environment details..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Medications Taken</label>
+                <div id="medication-entries" class="medication-entries-container">
+                    <!-- Medications will be added here -->
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" id="add-medication-entry">
+                    <i class="fas fa-plus"></i> Add Medication
+                </button>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Entry
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Medication Entry Template -->
+<div id="medication-entry-template" style="display: none;">
+    <div class="medication-entry">
+        <div class="medication-entry-fields">
+            <div class="input-with-icon">
+                <i class="fas fa-pills"></i>
+                <input type="text" placeholder="Medication name" class="med-name" required>
+            </div>
+            <div class="input-with-icon">
+                <i class="fas fa-prescription-bottle-alt"></i>
+                <input type="text" placeholder="Dosage" class="med-dosage">
+            </div>
+            <div class="input-with-icon">
+                <i class="fas fa-clock"></i>
+                <input type="text" placeholder="Time taken" class="med-time">
+            </div>
+        </div>
+        <button type="button" class="btn btn-icon remove-medication">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
         <!-- Scanner Section -->
     <div id="scanner" class="content-section">
         <h2 class="section-title">Ingredients Scanner</h2>
@@ -4064,11 +4599,6 @@ document.addEventListener('DOMContentLoaded', function() {
         fileInput.value = '';
     });
 });
-// Diary functionality
-document.getElementById('add-entry-btn').addEventListener('click', function() {
-    // In a real implementation, this would open a modal/form
-    alert('In a real app, this would open a form to add a new diary entry');
-});
 
 // Filter functionality
 document.getElementById('time-filter').addEventListener('change', function() {
@@ -4319,6 +4849,390 @@ function showSuccessMessage(message) {
     successMsg.style.display = 'block';
     setTimeout(() => {
         successMsg.style.display = 'none';
+    }, 3000);
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal elements
+    const diaryEntryModal = document.getElementById('diary-entry-modal');
+    const addEntryBtn = document.getElementById('add-entry-btn');
+    const closeModalBtn = document.querySelector('#diary-entry-modal .close-modal');
+    const closeModalBtnSecondary = document.querySelector('.close-modal-btn');
+    const diaryEntryForm = document.getElementById('diary-entry-form');
+    const addMedicationBtn = document.getElementById('add-medication-entry');
+    const medicationEntries = document.getElementById('medication-entries');
+    const medicationTemplate = document.getElementById('medication-entry-template');
+    
+    // Open modal with animation
+    addEntryBtn.addEventListener('click', function() {
+        // Set default date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('entry-date').value = today;
+        diaryEntryModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Close modal
+    function closeModal() {
+        diaryEntryModal.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            diaryEntryModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            diaryEntryModal.style.animation = '';
+        }, 300);
+    }
+    
+    closeModalBtn.addEventListener('click', closeModal);
+    closeModalBtnSecondary.addEventListener('click', closeModal);
+    
+    window.addEventListener('click', function(e) {
+        if (e.target === diaryEntryModal) {
+            closeModal();
+        }
+    });
+    
+    // Add medication entry with animation
+    addMedicationBtn.addEventListener('click', function() {
+        const newEntry = medicationTemplate.cloneNode(true);
+        newEntry.id = '';
+        newEntry.style.display = 'block';
+        newEntry.style.opacity = '0';
+        newEntry.style.transform = 'translateY(10px)';
+        
+        // Add remove functionality
+        newEntry.querySelector('.remove-medication').addEventListener('click', function() {
+            newEntry.style.transform = 'translateY(-10px)';
+            newEntry.style.opacity = '0';
+            setTimeout(() => {
+                newEntry.remove();
+            }, 300);
+        });
+        
+        medicationEntries.appendChild(newEntry);
+        
+        // Animate in
+        setTimeout(() => {
+            newEntry.style.opacity = '1';
+            newEntry.style.transform = 'translateY(0)';
+        }, 10);
+    });
+    
+    // Form submission with validation
+    diaryEntryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validate form
+        const date = document.getElementById('entry-date').value;
+        const severity = document.getElementById('entry-severity').value;
+        
+        if (!date || !severity) {
+            showErrorMessage('Please fill in all required fields');
+            return;
+        }
+        
+        // Get form values
+        const notes = document.getElementById('entry-notes').value;
+        
+        // Get selected symptoms
+        const symptomCheckboxes = document.querySelectorAll('input[name="symptoms"]:checked');
+        const symptoms = Array.from(symptomCheckboxes).map(cb => cb.value);
+        
+        // Get medications
+        const medEntries = document.querySelectorAll('.medication-entry');
+        const medications = Array.from(medEntries).map(entry => {
+            return {
+                name: entry.querySelector('.med-name').value,
+                dosage: entry.querySelector('.med-dosage').value,
+                time: entry.querySelector('.med-time').value
+            };
+        }).filter(med => med.name.trim() !== '');
+        
+        // Create new diary entry with unique ID
+        const newEntry = {
+            id: Date.now().toString(), // Unique ID for each entry
+            date: date,
+            severity: severity,
+            symptoms: symptoms,
+            notes: notes,
+            medications: medications,
+            createdAt: new Date().toISOString()
+        };
+        
+        // Save entry to localStorage
+        saveDiaryEntry(newEntry);
+        
+        // Close modal and reset form
+        closeModal();
+        this.reset();
+        medicationEntries.innerHTML = '';
+        
+        // Show success message
+        showSuccessMessage('Diary entry saved successfully!');
+    });
+    
+    // Load diary entries on page load
+    loadDiaryEntries();
+});
+
+// Save diary entry to localStorage
+function saveDiaryEntry(entry) {
+    try {
+        let entries = JSON.parse(localStorage.getItem('allergyDiaryEntries') || '[]');
+        
+        // Check if this is an update to existing entry
+        const existingIndex = entries.findIndex(e => e.id === entry.id);
+        if (existingIndex >= 0) {
+            entries[existingIndex] = entry; // Update existing entry
+        } else {
+            entries.unshift(entry); // Add new entry to beginning
+        }
+        
+        localStorage.setItem('allergyDiaryEntries', JSON.stringify(entries));
+        renderDiaryEntry(entry);
+    } catch (error) {
+        console.error('Error saving diary entry:', error);
+        showErrorMessage('Failed to save entry. Please try again.');
+    }
+}
+
+// Load diary entries from localStorage
+function loadDiaryEntries() {
+    try {
+        const entries = JSON.parse(localStorage.getItem('allergyDiaryEntries') || '[]');
+        
+        // Sort by date (newest first)
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        // Clear existing entries (except template if present)
+        const diaryContainer = document.querySelector('.diary-entries');
+        diaryContainer.innerHTML = '';
+        
+        // Render each entry
+        entries.forEach(entry => {
+            renderDiaryEntry(entry);
+        });
+        
+        if (entries.length === 0) {
+            diaryContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-book-open"></i>
+                    <h3>No entries yet</h3>
+                    <p>Add your first allergy diary entry to get started</p>
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Error loading diary entries:', error);
+        showErrorMessage('Failed to load entries. Please refresh the page.');
+    }
+}
+
+// Delete a diary entry
+function deleteDiaryEntry(entryId) {
+    try {
+        let entries = JSON.parse(localStorage.getItem('allergyDiaryEntries') || '[]');
+        entries = entries.filter(entry => entry.id !== entryId);
+        localStorage.setItem('allergyDiaryEntries', JSON.stringify(entries));
+        loadDiaryEntries(); // Refresh the list
+        showSuccessMessage('Entry deleted successfully');
+    } catch (error) {
+        console.error('Error deleting entry:', error);
+        showErrorMessage('Failed to delete entry. Please try again.');
+    }
+}
+
+// Render a diary entry in the UI
+function renderDiaryEntry(entry) {
+    const entryDate = new Date(entry.date);
+    const today = new Date();
+    const isToday = entryDate.toDateString() === today.toDateString();
+    
+    const entryElement = document.createElement('div');
+    entryElement.className = `diary-entry ${isToday ? 'current' : ''}`;
+    entryElement.dataset.entryId = entry.id;
+    entryElement.style.opacity = '0';
+    entryElement.style.transform = 'translateY(20px)';
+    entryElement.style.transition = 'all 0.4s ease-out';
+    
+    // Format date strings
+    const dayName = isToday ? 'Today' : entryDate.toLocaleDateString('en-US', { weekday: 'long' });
+    const fullDate = entryDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    
+    // Create symptom tags
+    const symptomTags = entry.symptoms.map(symptom => {
+        const icon = {
+            'sneezing': 'fa-wind',
+            'runny-nose': 'fa-tint',
+            'itchy-eyes': 'fa-eye',
+            'rash': 'fa-allergies',
+            'swelling': 'fa-lips',
+            'breathing': 'fa-lungs'
+        }[symptom] || 'fa-question-circle';
+        
+        return `<span class="symptom-tag ${symptom}">
+            <i class="fas ${icon}"></i> ${symptom.replace('-', ' ')}
+        </span>`;
+    }).join('');
+    
+    // Create medication items
+    const medicationItems = entry.medications.map(med => {
+        const icon = med.name.toLowerCase().includes('epi') ? 'fa-syringe' : 
+                    med.name.toLowerCase().includes('cream') ? 'fa-burn' : 
+                    med.name.toLowerCase().includes('spray') ? 'fa-spray-can' : 
+                    'fa-pills';
+        
+        return `<div class="medication-item ${med.name.toLowerCase().includes('epi') ? 'emergency' : ''}">
+            <i class="fas ${icon}"></i>
+            <span class="medication-name">${med.name}</span>
+            ${med.dosage ? `<span class="medication-dosage">${med.dosage}</span>` : ''}
+            ${med.time ? `<span class="medication-time">${med.time}</span>` : ''}
+        </div>`;
+    }).join('');
+    
+    // Create the full entry HTML
+    entryElement.innerHTML = `
+        <div class="entry-header">
+            <div class="entry-date">
+                <div class="date-day">${dayName}</div>
+                <div class="date-full">${fullDate}</div>
+            </div>
+            <div class="entry-severity ${entry.severity}">
+                <i class="fas fa-thermometer-${getSeverityIcon(entry.severity)}"></i> 
+                ${entry.severity.charAt(0).toUpperCase() + entry.severity.slice(1)}
+            </div>
+        </div>
+        
+        ${symptomTags ? `<div class="symptoms-list">${symptomTags}</div>` : ''}
+        
+        ${entry.notes ? `<div class="entry-notes"><p>${entry.notes}</p></div>` : ''}
+        
+        ${medicationItems ? `<div class="entry-medications">${medicationItems}</div>` : ''}
+        
+        <div class="entry-actions">
+            <button class="btn btn-outline btn-sm edit-entry">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn btn-outline btn-sm delete-entry">
+                <i class="fas fa-trash-alt"></i> Delete
+            </button>
+        </div>
+    `;
+    
+    // Add event listeners for actions
+    entryElement.querySelector('.edit-entry').addEventListener('click', () => {
+        editDiaryEntry(entry.id);
+    });
+    
+    entryElement.querySelector('.delete-entry').addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete this entry?')) {
+            deleteDiaryEntry(entry.id);
+        }
+    });
+    
+    // Add to the top of the diary entries
+    const diaryEntries = document.querySelector('.diary-entries');
+    diaryEntries.insertBefore(entryElement, diaryEntries.firstChild);
+    
+    // Animate in
+    setTimeout(() => {
+        entryElement.style.opacity = '1';
+        entryElement.style.transform = 'translateY(0)';
+    }, 10);
+}
+
+// Edit an existing diary entry
+function editDiaryEntry(entryId) {
+    const entries = JSON.parse(localStorage.getItem('allergyDiaryEntries') || '[]');
+    const entry = entries.find(e => e.id === entryId);
+    
+    if (!entry) {
+        showErrorMessage('Entry not found');
+        return;
+    }
+    
+    // Open modal
+    const diaryEntryModal = document.getElementById('diary-entry-modal');
+    diaryEntryModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Fill form with entry data
+    document.getElementById('entry-date').value = entry.date;
+    document.getElementById('entry-severity').value = entry.severity;
+    document.getElementById('entry-notes').value = entry.notes || '';
+    
+    // Check symptom checkboxes
+    document.querySelectorAll('input[name="symptoms"]').forEach(checkbox => {
+        checkbox.checked = entry.symptoms.includes(checkbox.value);
+    });
+    
+    // Add medications
+    const medicationEntries = document.getElementById('medication-entries');
+    medicationEntries.innerHTML = '';
+    
+    entry.medications.forEach(med => {
+        const newEntry = document.getElementById('medication-entry-template').cloneNode(true);
+        newEntry.id = '';
+        newEntry.style.display = 'block';
+        
+        newEntry.querySelector('.med-name').value = med.name;
+        newEntry.querySelector('.med-dosage').value = med.dosage || '';
+        newEntry.querySelector('.med-time').value = med.time || '';
+        
+        newEntry.querySelector('.remove-medication').addEventListener('click', function() {
+            newEntry.style.transform = 'translateY(-10px)';
+            newEntry.style.opacity = '0';
+            setTimeout(() => {
+                newEntry.remove();
+            }, 300);
+        });
+        
+        medicationEntries.appendChild(newEntry);
+    });
+    
+    // Store the entry ID in the form for reference during save
+    document.getElementById('diary-entry-form').dataset.editingEntryId = entryId;
+}
+
+function getSeverityIcon(severity) {
+    return {
+        'mild': 'half',
+        'moderate': 'three-quarters',
+        'severe': 'full'
+    }[severity];
+}
+
+function showSuccessMessage(message) {
+    const successMsg = document.createElement('div');
+    successMsg.className = 'notification success';
+    successMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    document.body.appendChild(successMsg);
+    
+    setTimeout(() => {
+        successMsg.style.opacity = '1';
+    }, 10);
+    
+    setTimeout(() => {
+        successMsg.style.opacity = '0';
+        setTimeout(() => {
+            successMsg.remove();
+        }, 300);
+    }, 3000);
+}
+
+function showErrorMessage(message) {
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'notification error';
+    errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    document.body.appendChild(errorMsg);
+    
+    setTimeout(() => {
+        errorMsg.style.opacity = '1';
+    }, 10);
+    
+    setTimeout(() => {
+        errorMsg.style.opacity = '0';
+        setTimeout(() => {
+            errorMsg.remove();
+        }, 300);
     }, 3000);
 }
     </script>
