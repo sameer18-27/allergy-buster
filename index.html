@@ -1286,6 +1286,931 @@ nav {
         grid-template-columns: 1fr;
     }
 }
+/* ===== Diary Section Styles ===== */
+.diary-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.diary-header .section-title {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.diary-header .section-description {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.diary-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.diary-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.diary-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 0.95rem;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.diary-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.diary-entry {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.diary-entry.current {
+    border-left: 4px solid var(--primary);
+    background-color: rgba(74, 111, 165, 0.03);
+}
+
+.diary-entry:hover {
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.entry-date {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.date-day {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--dark);
+}
+
+.date-full {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.entry-severity {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.entry-severity.mild {
+    background-color: rgba(23, 162, 184, 0.1);
+    color: var(--info);
+}
+
+.entry-severity.moderate {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--warning);
+}
+
+.entry-severity.severe {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+}
+
+.symptoms-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.symptom-tag {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.symptom-tag.sneezing {
+    background-color: rgba(74, 111, 165, 0.1);
+    color: var(--primary);
+}
+
+.symptom-tag.runny-nose {
+    background-color: rgba(107, 140, 66, 0.1);
+    color: var(--secondary);
+}
+
+.symptom-tag.itchy-eyes {
+    background-color: rgba(255, 126, 95, 0.1);
+    color: var(--accent);
+}
+
+.symptom-tag.rash {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger);
+}
+
+.symptom-tag.swelling {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--warning);
+}
+
+.symptom-tag.breathing {
+    background-color: rgba(23, 162, 184, 0.1);
+    color: var(--info);
+}
+
+.entry-notes {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.entry-medications {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.medication-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.medication-item.emergency {
+    background-color: rgba(220, 53, 69, 0.05);
+    border-left: 3px solid var(--danger);
+}
+
+.medication-name {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.medication-time {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.entry-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.diary-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .diary-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .diary-filters {
+        flex-direction: column;
+    }
+    
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .entry-date {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+/* Telehealth Section Styles */
+.telehealth-intro {
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.telehealth-intro p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.telehealth-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.telehealth-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.telehealth-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.telehealth-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.telehealth-card h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.telehealth-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.benefits-list {
+    margin-top: 20px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.benefit-item i {
+    color: var(--success);
+}
+
+.location-search {
+    margin-bottom: 20px;
+}
+
+.location-search .search-container {
+    margin-bottom: 10px;
+}
+
+.distance-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.distance-options select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.nearby-results {
+    margin-top: 40px;
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.results-summary {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+}
+
+.summary-item i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.summary-item span {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.map-container {
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #eee;
+}
+
+.map-placeholder {
+    text-align: center;
+    color: #999;
+}
+
+.map-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.map-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.legend-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-icon.clinic {
+    background-color: var(--primary);
+}
+
+.legend-icon.doctor {
+    background-color: var(--accent);
+}
+
+.legend-icon.hospital {
+    background-color: var(--danger);
+}
+
+.doctor-card.nearby {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.doctor-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.doctor-details {
+    flex-grow: 1;
+}
+
+.doctor-details h3 {
+    margin-bottom: 5px;
+    color: var(--dark);
+}
+
+.specialty {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.location {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.location i {
+    color: var(--danger);
+}
+
+.distance {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.rating {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.rating i {
+    color: var(--warning);
+}
+
+.accepts-insurance {
+    display: inline-block;
+    margin-left: 15px;
+    color: var(--success);
+    font-size: 0.85rem;
+}
+
+.accepts-insurance i {
+    color: var(--success);
+}
+
+.doctor-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.virtual-doctors {
+    margin-top: 50px;
+}
+
+.doctor-card.virtual {
+    margin-bottom: 20px;
+}
+
+.availability {
+    color: var(--success);
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.availability i {
+    margin-right: 5px;
+}
+
+.languages {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.languages i {
+    margin-right: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .telehealth-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .doctor-card.nearby {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .doctor-actions {
+        width: 100%;
+        margin-top: 15px;
+        justify-content: flex-end;
+    }
+    
+    .results-summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+/* Medications Section Styles */
+.medication-tabs {
+    margin-top: 20px;
+}
+
+.medication-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.medication-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.medication-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+
+.medication-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.medication-info {
+    flex-grow: 1;
+}
+
+.medication-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.medication-details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.medication-details span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.medication-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.refill-reminder {
+    margin-top: 30px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.reminder-list {
+    margin-top: 15px;
+}
+
+.reminder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.reminder-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.med-name {
+    font-weight: 600;
+}
+
+.reminder-date {
+    font-size: 0.9rem;
+    color: var(--warning);
+}
+
+/* Medication Finder Styles */
+.filter-options {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-options select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.medication-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.medication-result-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.medication-image {
+    width: 60px;
+    height: 60px;
+    background: rgba(74, 111, 165, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.medication-details {
+    flex-grow: 1;
+}
+
+.medication-details h4 {
+    margin: 0 0 5px 0;
+    color: var(--dark);
+}
+
+.med-type {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 5px;
+}
+
+.med-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.med-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.medication-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Interaction Checker Styles */
+.interaction-checker {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.interaction-select {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.interaction-selector {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    min-width: 200px;
+}
+
+.interaction-results {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.no-interaction {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--success);
+}
+
+.interaction-warning {
+    display: flex;
+    gap: 15px;
+    color: var(--danger);
+}
+
+.warning-content {
+    flex-grow: 1;
+}
+
+.interaction-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(220, 53, 69, 0.05);
+    border-radius: 6px;
+}
+
+.interaction-info {
+    margin-top: 30px;
+}
+
+.interaction-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--warning);
+}
+
+.interaction-card h4 {
+    margin: 0 0 5px 0;
+    color: var(--dark);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--dark);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .medication-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .medication-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .filter-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .interaction-select {
+        flex-direction: column;
+    }
+    
+    .interaction-selector {
+        width: 100%;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        width: 90%;
+    }
+}
     </style>
 </head>
 <body>
@@ -1753,43 +2678,482 @@ nav {
                 </div>
             </div>
         </div>
-
-        <!-- Allergy Diary Section -->
-        <div id="diary" class="content-section">
-            <h2 class="section-title">Allergy Symptom Diary</h2>
-            <div class="diary-container">
-                <div class="diary-header">
-                    <h3>Your Symptom Log</h3>
-                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Add New Entry</button>
+        <!-- Medications Section -->
+<div id="medications" class="content-section">
+    <h2 class="section-title">Medication Management</h2>
+    
+    <div class="medication-tabs">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="my-meds">My Medications</button>
+            <button class="tab-btn" data-tab="med-finder">Medication Finder</button>
+            <button class="tab-btn" data-tab="interactions">Drug Interactions</button>
+        </div>
+        
+        <!-- My Medications Tab -->
+        <div id="my-meds" class="tab-content active">
+            <div class="medication-header">
+                <h3>Your Current Medications</h3>
+                <button class="btn btn-primary" id="add-medication-btn">
+                    <i class="fas fa-plus"></i> Add Medication
+                </button>
+            </div>
+            
+            <div class="medication-list" id="current-medications">
+                <!-- Medication cards will be added here dynamically -->
+                <div class="medication-card">
+                    <div class="medication-info">
+                        <div class="medication-name">Cetirizine (Zyrtec)</div>
+                        <div class="medication-details">
+                            <span><i class="fas fa-capsules"></i> 10mg tablet</span>
+                            <span><i class="fas fa-clock"></i> Daily in morning</span>
+                            <span><i class="fas fa-calendar-alt"></i> Started: 01/15/2023</span>
+                        </div>
+                    </div>
+                    <div class="medication-actions">
+                        <button class="btn btn-outline btn-sm edit-med">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline btn-sm delete-med">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="diary-entry">
-                    <div class="diary-date">Today, June 15, 2023</div>
-                    <div class="diary-symptoms">
-                        <span>Sneezing</span>
-                        <span>Runny nose</span>
-                        <span>Itchy eyes</span>
+                <div class="medication-card">
+                    <div class="medication-info">
+                        <div class="medication-name">Fluticasone (Flonase)</div>
+                        <div class="medication-details">
+                            <span><i class="fas fa-spray-can"></i> Nasal spray</span>
+                            <span><i class="fas fa-clock"></i> 2 sprays each nostril daily</span>
+                            <span><i class="fas fa-calendar-alt"></i> Started: 03/05/2023</span>
+                        </div>
                     </div>
-                    <p>Went for a walk in the park in the morning. Symptoms started about 30 minutes after being outside.</p>
-                    <div class="diary-medication">
-                        <i class="fas fa-pills"></i> Took Cetirizine at 11:30 AM
+                    <div class="medication-actions">
+                        <button class="btn btn-outline btn-sm edit-med">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-outline btn-sm delete-med">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
                     </div>
                 </div>
-                
-                <div class="diary-entry">
-                    <div class="diary-date">June 12, 2023</div>
-                    <div class="diary-symptoms">
-                        <span>Skin rash</span>
+            </div>
+            
+            <div class="refill-reminder">
+                <h3><i class="fas fa-bell"></i> Refill Reminders</h3>
+                <div class="reminder-list">
+                    <div class="reminder-item">
+                        <div class="reminder-info">
+                            <span class="med-name">Cetirizine (Zyrtec)</span>
+                            <span class="reminder-date">Refill due in 7 days</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Order Refill
+                        </button>
                     </div>
-                    <p>Tried new laundry detergent. Developed red, itchy patches on arms and torso about 2 hours after wearing washed clothes.</p>
-                </div>
-                
-                <div class="diary-actions">
-                    <button class="btn btn-secondary"><i class="fas fa-download"></i> Export Diary</button>
-                    <button class="btn btn-secondary"><i class="fas fa-share-alt"></i> Share with Doctor</button>
                 </div>
             </div>
         </div>
+        
+        <!-- Medication Finder Tab -->
+        <div id="med-finder" class="tab-content">
+            <div class="search-container">
+                <input type="text" class="search-input" id="med-search" placeholder="Search for medications...">
+                <button class="search-btn" id="search-meds"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="filter-options">
+                <h4>Filter by:</h4>
+                <select id="med-type">
+                    <option value="">All Types</option>
+                    <option value="antihistamine">Antihistamines</option>
+                    <option value="nasal">Nasal Sprays</option>
+                    <option value="eye">Eye Drops</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+                
+                <select id="med-price">
+                    <option value="">Any Price</option>
+                    <option value="low">$ (Under $10)</option>
+                    <option value="medium">$$ ($10-$50)</option>
+                    <option value="high">$$$ (Over $50)</option>
+                </select>
+                
+                <button class="btn btn-secondary" id="apply-filters">Apply Filters</button>
+            </div>
+            
+            <div class="medication-results" id="medication-results">
+                <!-- Results will be populated here -->
+                <div class="medication-result-card">
+                    <div class="medication-image">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="medication-details">
+                        <h4>Loratadine (Claritin)</h4>
+                        <p class="med-type">Antihistamine</p>
+                        <p class="med-desc">Non-drowsy formula for relief of sneezing, runny nose, itchy/watery eyes</p>
+                        <div class="med-meta">
+                            <span><i class="fas fa-dollar-sign"></i> $15-25</span>
+                            <span><i class="fas fa-user-md"></i> OTC</span>
+                            <span><i class="fas fa-clock"></i> 24-hour relief</span>
+                        </div>
+                    </div>
+                    <div class="medication-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i> Add to My Meds
+                        </button>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="medication-result-card">
+                    <div class="medication-image">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <div class="medication-details">
+                        <h4>Fluticasone (Flonase)</h4>
+                        <p class="med-type">Nasal Corticosteroid</p>
+                        <p class="med-desc">Relieves nasal congestion, sneezing, runny nose due to allergies</p>
+                        <div class="med-meta">
+                            <span><i class="fas fa-dollar-sign"></i> $20-30</span>
+                            <span><i class="fas fa-user-md"></i> OTC</span>
+                            <span><i class="fas fa-clock"></i> 24-hour relief</span>
+                        </div>
+                    </div>
+                    <div class="medication-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i> Add to My Meds
+                        </button>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-info-circle"></i> Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Drug Interactions Tab -->
+        <div id="interactions" class="tab-content">
+            <div class="interaction-checker">
+                <h3>Check for Drug Interactions</h3>
+                <p>Select medications from your list to check for potential interactions:</p>
+                
+                <div class="interaction-select">
+                    <select id="med1" class="interaction-selector">
+                        <option value="">Select first medication</option>
+                        <option value="cetirizine">Cetirizine (Zyrtec)</option>
+                        <option value="fluticasone">Fluticasone (Flonase)</option>
+                    </select>
+                    
+                    <select id="med2" class="interaction-selector">
+                        <option value="">Select second medication</option>
+                        <option value="cetirizine">Cetirizine (Zyrtec)</option>
+                        <option value="fluticasone">Fluticasone (Flonase)</option>
+                        <option value="diphenhydramine">Diphenhydramine (Benadryl)</option>
+                    </select>
+                    
+                    <button class="btn btn-primary" id="check-interactions">
+                        <i class="fas fa-search"></i> Check Interactions
+                    </button>
+                </div>
+                
+                <div class="interaction-results" id="interaction-results">
+                    <!-- Results will be shown here -->
+                    <div class="no-interaction" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>No known interactions between these medications.</p>
+                    </div>
+                    
+                    <div class="interaction-warning" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="warning-content">
+                            <h4>Potential Interaction</h4>
+                            <p>These medications may interact with each other. Consult your doctor before taking them together.</p>
+                            <div class="interaction-details">
+                                <p><strong>Severity:</strong> Moderate</p>
+                                <p><strong>Effect:</strong> Increased drowsiness</p>
+                                <p><strong>Recommendation:</strong> Space doses by at least 4 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interaction-info">
+                <h3>Common Allergy Medication Interactions</h3>
+                <div class="interaction-card">
+                    <h4>Antihistamines + Sedatives</h4>
+                    <p>May cause excessive drowsiness or dizziness</p>
+                </div>
+                <div class="interaction-card">
+                    <h4>Nasal Decongestants + Blood Pressure Meds</h4>
+                    <p>May increase blood pressure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Medication Modal -->
+    <div class="modal" id="add-med-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3><i class="fas fa-pills"></i> Add New Medication</h3>
+            
+            <form id="medication-form">
+                <div class="form-group">
+                    <label for="med-name">Medication Name</label>
+                    <input type="text" id="med-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="med-type">Type</label>
+                    <select id="med-type" required>
+                        <option value="">Select type</option>
+                        <option value="antihistamine">Antihistamine</option>
+                        <option value="nasal">Nasal Spray</option>
+                        <option value="eye">Eye Drops</option>
+                        <option value="inhaler">Inhaler</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="med-dosage">Dosage</label>
+                    <input type="text" id="med-dosage" placeholder="e.g., 10mg tablet" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="med-schedule">Schedule</label>
+                    <select id="med-schedule" required>
+                        <option value="">Select schedule</option>
+                        <option value="daily">Daily</option>
+                        <option value="as-needed">As Needed</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="seasonal">Seasonal</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="med-start">Start Date</label>
+                    <input type="date" id="med-start" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="med-notes">Notes</label>
+                    <textarea id="med-notes" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Medication</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+        <!-- Allergy Diary Section -->
+<div id="diary" class="content-section">
+    <div class="diary-header">
+        <h2 class="section-title">
+            <i class="fas fa-book-medical"></i> Allergy Symptom Journal
+        </h2>
+        <p class="section-description">Track your symptoms, triggers, and treatments over time</p>
+    </div>
+
+    <div class="diary-container">
+        <div class="diary-controls">
+            <button class="btn btn-primary" id="add-entry-btn">
+                <i class="fas fa-plus-circle"></i> New Entry
+            </button>
+            <div class="diary-filters">
+                <select id="time-filter" class="filter-select">
+                    <option value="all">All Time</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+                <select id="symptom-filter" class="filter-select">
+                    <option value="all">All Symptoms</option>
+                    <option value="sneezing">Sneezing</option>
+                    <option value="rash">Skin Rash</option>
+                    <option value="itching">Itching</option>
+                    <option value="swelling">Swelling</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="diary-entries">
+            <!-- Today's Entry -->
+            <div class="diary-entry current">
+                <div class="entry-header">
+                    <div class="entry-date">
+                        <div class="date-day">Today</div>
+                        <div class="date-full">June 15, 2023</div>
+                    </div>
+                    <div class="entry-severity mild">
+                        <i class="fas fa-thermometer-half"></i> Mild
+                    </div>
+                </div>
+                
+                <div class="entry-content">
+                    <div class="symptoms-list">
+                        <span class="symptom-tag sneezing">
+                            <i class="fas fa-wind"></i> Sneezing
+                        </span>
+                        <span class="symptom-tag runny-nose">
+                            <i class="fas fa-tint"></i> Runny nose
+                        </span>
+                        <span class="symptom-tag itchy-eyes">
+                            <i class="fas fa-eye"></i> Itchy eyes
+                        </span>
+                    </div>
+                    
+                    <div class="entry-notes">
+                        <p>Morning walk in Central Park. Symptoms began about 30 minutes after being outside. High pollen count according to weather report.</p>
+                    </div>
+                    
+                    <div class="entry-medications">
+                        <div class="medication-item">
+                            <i class="fas fa-pills"></i>
+                            <span class="medication-name">Cetirizine (Zyrtec)</span>
+                            <span class="medication-time">10:45 AM</span>
+                        </div>
+                        <div class="medication-item">
+                            <i class="fas fa-eye-dropper"></i>
+                            <span class="medication-name">Artificial tears</span>
+                            <span class="medication-time">As needed</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="entry-actions">
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-chart-line"></i> Trends
+                    </button>
+                </div>
+            </div>
+
+            <!-- Past Entry -->
+            <div class="diary-entry">
+                <div class="entry-header">
+                    <div class="entry-date">
+                        <div class="date-day">Wednesday</div>
+                        <div class="date-full">June 12, 2023</div>
+                    </div>
+                    <div class="entry-severity moderate">
+                        <i class="fas fa-thermometer-three-quarters"></i> Moderate
+                    </div>
+                </div>
+                
+                <div class="entry-content">
+                    <div class="symptoms-list">
+                        <span class="symptom-tag rash">
+                            <i class="fas fa-allergies"></i> Skin rash
+                        </span>
+                        <span class="symptom-tag itching">
+                            <i class="fas fa-hand-paper"></i> Itching
+                        </span>
+                    </div>
+                    
+                    <div class="entry-notes">
+                        <p>Tried new laundry detergent (Brand: CleanFresh). Developed red, itchy patches on arms and torso about 2 hours after wearing washed clothes. Symptoms improved after shower and application of hydrocortisone cream.</p>
+                    </div>
+                    
+                    <div class="entry-medications">
+                        <div class="medication-item">
+                            <i class="fas fa-prescription-bottle-alt"></i>
+                            <span class="medication-name">Diphenhydramine (Benadryl)</span>
+                            <span class="medication-time">25mg at 3:30 PM</span>
+                        </div>
+                        <div class="medication-item">
+                            <i class="fas fa-burn"></i>
+                            <span class="medication-name">Hydrocortisone cream</span>
+                            <span class="medication-time">Applied twice</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="entry-actions">
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-chart-line"></i> Trends
+                    </button>
+                </div>
+            </div>
+
+            <!-- Older Entry -->
+            <div class="diary-entry">
+                <div class="entry-header">
+                    <div class="entry-date">
+                        <div class="date-day">Monday</div>
+                        <div class="date-full">June 5, 2023</div>
+                    </div>
+                    <div class="entry-severity severe">
+                        <i class="fas fa-thermometer-full"></i> Severe
+                    </div>
+                </div>
+                
+                <div class="entry-content">
+                    <div class="symptoms-list">
+                        <span class="symptom-tag swelling">
+                            <i class="fas fa-lips"></i> Lip swelling
+                        </span>
+                        <span class="symptom-tag hives">
+                            <i class="fas fa-dot-circle"></i> Hives
+                        </span>
+                        <span class="symptom-tag breathing">
+                            <i class="fas fa-lungs"></i> Breathing difficulty
+                        </span>
+                    </div>
+                    
+                    <div class="entry-notes">
+                        <p>Accidental exposure to peanuts at restaurant (cross-contamination). Used EpiPen and called 911. Spent 4 hours in emergency department for observation.</p>
+                    </div>
+                    
+                    <div class="entry-medications">
+                        <div class="medication-item emergency">
+                            <i class="fas fa-syringe"></i>
+                            <span class="medication-name">Epinephrine (EpiPen)</span>
+                            <span class="medication-time">12:15 PM</span>
+                        </div>
+                        <div class="medication-item">
+                            <i class="fas fa-prescription-bottle-alt"></i>
+                            <span class="medication-name">Prednisone</span>
+                            <span class="medication-time">40mg for 5 days</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="entry-actions">
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-chart-line"></i> Trends
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="diary-footer">
+            <button class="btn btn-secondary">
+                <i class="fas fa-file-export"></i> Export Diary
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-share-medical"></i> Share with Doctor
+            </button>
+            <button class="btn btn-outline">
+                <i class="fas fa-chart-pie"></i> View Statistics
+            </button>
+        </div>
+    </div>
+</div>
         <!-- Scanner Section -->
     <div id="scanner" class="content-section">
         <h2 class="section-title">Ingredients Scanner</h2>
@@ -1856,40 +3220,207 @@ nav {
     </div>
 
 
-        <!-- Telehealth Section -->
-        <div id="telehealth" class="content-section">
-            <h2 class="section-title">Connect with Allergy Specialists</h2>
-            <div class="telehealth-section">
-                <p>Schedule a virtual consultation with board-certified allergists and immunologists</p>
-                <button class="btn btn-primary"><i class="fas fa-video"></i> Start Video Consultation</button>
-                
-                <div class="doctor-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
-                    <div class="doctor-card">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Dr. Smith" class="doctor-img">
-                        <h3>Dr. Sarah Smith</h3>
-                        <p>Allergy & Immunology Specialist</p>
-                        <p><i class="fas fa-star"></i> 4.9 (245 reviews)</p>
-                        <button class="btn btn-secondary">View Profile</button>
-                    </div>
-                    
-                    <div class="doctor-card">
-                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Dr. Johnson" class="doctor-img">
-                        <h3>Dr. Michael Johnson</h3>
-                        <p>Pediatric Allergist</p>
-                        <p><i class="fas fa-star"></i> 4.8 (189 reviews)</p>
-                        <button class="btn btn-secondary">View Profile</button>
-                    </div>
-                    
-                    <div class="doctor-card">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Dr. Lee" class="doctor-img">
-                        <h3>Dr. Jennifer Lee</h3>
-                        <p>Allergy & Asthma Specialist</p>
-                        <p><i class="fas fa-star"></i> 4.7 (156 reviews)</p>
-                        <button class="btn btn-secondary">View Profile</button>
-                    </div>
+       <!-- Telehealth Section -->
+<div id="telehealth" class="content-section">
+    <h2 class="section-title">Connect with Allergy Specialists</h2>
+    
+    <div class="telehealth-intro">
+        <p>Get personalized allergy care through virtual consultations or find specialists near you</p>
+    </div>
+    
+    <div class="telehealth-options">
+        <div class="telehealth-card virtual">
+            <div class="telehealth-icon">
+                <i class="fas fa-laptop-medical"></i>
+            </div>
+            <h3>Virtual Consultations</h3>
+            <p>Connect with board-certified allergists from the comfort of your home</p>
+            <button class="btn btn-primary"><i class="fas fa-video"></i> Start Video Consultation</button>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i> No travel needed
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i> Same-day appointments
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i> Prescription delivery
                 </div>
             </div>
         </div>
+        
+        <div class="telehealth-card in-person">
+            <div class="telehealth-icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Find Nearby Specialists</h3>
+            <p>Search for allergy clinics and immunologists in your area</p>
+            
+            <div class="location-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="location-input" placeholder="Enter your location or zip code">
+                    <button class="search-btn" id="find-doctors-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="btn btn-outline" id="use-current-location">
+                    <i class="fas fa-location-arrow"></i> Use Current Location
+                </button>
+            </div>
+            
+            <div class="distance-options">
+                <span>Search radius:</span>
+                <select id="distance-select">
+                    <option value="5">5 miles</option>
+                    <option value="10" selected>10 miles</option>
+                    <option value="25">25 miles</option>
+                    <option value="50">50 miles</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Nearby Doctors Results -->
+    <div class="nearby-results" id="nearby-results" style="display: none;">
+        <h3 class="section-subtitle">
+            <i class="fas fa-map-pin"></i> Allergy Specialists Near You
+            <span id="results-location" style="font-size: 0.8em; color: #666;"></span>
+        </h3>
+        
+        <div class="results-summary">
+            <div class="summary-item">
+                <i class="fas fa-hospital"></i>
+                <span id="total-clinics">5</span> Clinics
+            </div>
+            <div class="summary-item">
+                <i class="fas fa-user-md"></i>
+                <span id="total-doctors">12</span> Specialists
+            </div>
+            <div class="summary-item">
+                <i class="fas fa-star"></i>
+                Avg. Rating: <span id="avg-rating">4.7</span>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div class="map-placeholder" id="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Map view would display here with doctor locations</p>
+            </div>
+            <div class="map-legend">
+                <div class="legend-item">
+                    <span class="legend-icon clinic"></span> Allergy Clinic
+                </div>
+                <div class="legend-item">
+                    <span class="legend-icon doctor"></span> Specialist
+                </div>
+                <div class="legend-item">
+                    <span class="legend-icon hospital"></span> Hospital
+                </div>
+            </div>
+        </div>
+        
+        <div class="doctor-list">
+            <!-- Sample Nearby Doctor 1 -->
+            <div class="doctor-card nearby">
+                <div class="doctor-info">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Dr. Smith" class="doctor-img">
+                    <div class="doctor-details">
+                        <h3>Dr. Sarah Smith</h3>
+                        <p class="specialty">Allergy & Immunology Specialist</p>
+                        <p class="location">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <span class="distance">1.2 miles</span> - 
+                            Manhattan Allergy Associates
+                        </p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.9 (245 reviews)
+                            <span class="accepts-insurance"><i class="fas fa-check-circle"></i> Accepts your insurance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="doctor-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-calendar-alt"></i> Book Appointment
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-directions"></i> Directions
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-phone-alt"></i> Call
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Sample Nearby Doctor 2 -->
+            <div class="doctor-card nearby">
+                <div class="doctor-info">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Dr. Johnson" class="doctor-img">
+                    <div class="doctor-details">
+                        <h3>Dr. Michael Johnson</h3>
+                        <p class="specialty">Pediatric Allergist</p>
+                        <p class="location">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <span class="distance">2.5 miles</span> - 
+                            NYC Children's Allergy Center
+                        </p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.8 (189 reviews)
+                            <span class="accepts-insurance"><i class="fas fa-check-circle"></i> Accepts your insurance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="doctor-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-calendar-alt"></i> Book Appointment
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-directions"></i> Directions
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-phone-alt"></i> Call
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Sample Nearby Doctor 3 -->
+            <div class="doctor-card nearby">
+                <div class="doctor-info">
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Dr. Lee" class="doctor-img">
+                    <div class="doctor-details">
+                        <h3>Dr. Jennifer Lee</h3>
+                        <p class="specialty">Allergy & Asthma Specialist</p>
+                        <p class="location">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <span class="distance">3.1 miles</span> - 
+                            Asthma & Allergy Care of New York
+                        </p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i> 4.7 (156 reviews)
+                            <span class="accepts-insurance"><i class="fas fa-check-circle"></i> Accepts your insurance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="doctor-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-calendar-alt"></i> Book Appointment
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-directions"></i> Directions
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-phone-alt"></i> Call
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <button class="btn btn-outline" disabled>Previous</button>
+            <span>Page 1 of 3</span>
+            <button class="btn btn-outline">Next</button>
+        </div>
+    </div>
+    
+    
 
         <!-- Medication Reminders Section -->
         <div class="reminder-section">
@@ -2533,6 +4064,263 @@ document.addEventListener('DOMContentLoaded', function() {
         fileInput.value = '';
     });
 });
+// Diary functionality
+document.getElementById('add-entry-btn').addEventListener('click', function() {
+    // In a real implementation, this would open a modal/form
+    alert('In a real app, this would open a form to add a new diary entry');
+});
+
+// Filter functionality
+document.getElementById('time-filter').addEventListener('change', function() {
+    // Filter entries by time
+    console.log('Time filter changed to:', this.value);
+});
+
+document.getElementById('symptom-filter').addEventListener('change', function() {
+    // Filter entries by symptom
+    console.log('Symptom filter changed to:', this.value);
+});
+// Telehealth functionality
+document.getElementById('find-doctors-btn').addEventListener('click', function() {
+    const location = document.getElementById('location-input').value.trim();
+    const distance = document.getElementById('distance-select').value;
+    
+    if (location === '') {
+        alert('Please enter a location');
+        return;
+    }
+    
+    // In a real app, this would call a location API
+    showNearbyDoctors(location, distance);
+});
+
+document.getElementById('use-current-location').addEventListener('click', function() {
+    // Simulate getting current location
+    document.getElementById('location-input').value = 'Current Location';
+    showLoading(true);
+    
+    setTimeout(() => {
+        showLoading(false);
+        showNearbyDoctors('New York, NY', document.getElementById('distance-select').value);
+    }, 1500);
+});
+
+function showNearbyDoctors(location, distance) {
+    document.getElementById('results-location').textContent = `in ${location} (within ${distance} miles)`;
+    document.getElementById('nearby-results').style.display = 'block';
+    
+    // Scroll to results
+    document.getElementById('nearby-results').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showLoading(show) {
+    const btn = document.getElementById('find-doctors-btn');
+    if (show) {
+        btn.innerHTML = '<div class="loader"></div>';
+        btn.disabled = true;
+    } else {
+        btn.innerHTML = '<i class="fas fa-search"></i>';
+        btn.disabled = false;
+    }
+}
+// Medications Section Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    document.querySelectorAll('.medication-tabs .tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.medication-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.medication-tabs .tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Add medication modal
+    const addMedBtn = document.getElementById('add-medication-btn');
+    const addMedModal = document.getElementById('add-med-modal');
+    const closeModal = document.querySelector('#add-med-modal .close-modal');
+    
+    addMedBtn.addEventListener('click', () => {
+        addMedModal.style.display = 'block';
+    });
+    
+    closeModal.addEventListener('click', () => {
+        addMedModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === addMedModal) {
+            addMedModal.style.display = 'none';
+        }
+    });
+    
+    // Form submission
+    document.getElementById('medication-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('med-name').value;
+        const type = document.getElementById('med-type').value;
+        const dosage = document.getElementById('med-dosage').value;
+        const schedule = document.getElementById('med-schedule').value;
+        const startDate = document.getElementById('med-start').value;
+        const notes = document.getElementById('med-notes').value;
+        
+        // Create new medication card
+        const medCard = document.createElement('div');
+        medCard.className = 'medication-card';
+        medCard.innerHTML = `
+            <div class="medication-info">
+                <div class="medication-name">${name}</div>
+                <div class="medication-details">
+                    <span><i class="fas fa-${getMedIcon(type)}"></i> ${dosage}</span>
+                    <span><i class="fas fa-clock"></i> ${schedule}</span>
+                    <span><i class="fas fa-calendar-alt"></i> Started: ${formatDate(startDate)}</span>
+                </div>
+            </div>
+            <div class="medication-actions">
+                <button class="btn btn-outline btn-sm edit-med">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="btn btn-outline btn-sm delete-med">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        `;
+        
+        // Add to list
+        document.getElementById('current-medications').appendChild(medCard);
+        
+        // Reset form and close modal
+        this.reset();
+        addMedModal.style.display = 'none';
+        
+        // Show success message
+        showSuccessMessage('Medication added successfully!');
+        
+        // Add event listeners to new buttons
+        addMedicationEventListeners(medCard);
+    });
+    
+    // Add event listeners to existing medication cards
+    document.querySelectorAll('.medication-card').forEach(card => {
+        addMedicationEventListeners(card);
+    });
+    
+    // Search medications
+    document.getElementById('search-meds').addEventListener('click', searchMedications);
+    document.getElementById('med-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchMedications();
+    });
+    
+    // Apply filters
+    document.getElementById('apply-filters').addEventListener('click', searchMedications);
+    
+    // Check interactions
+    document.getElementById('check-interactions').addEventListener('click', checkInteractions);
+});
+
+function addMedicationEventListeners(card) {
+    // Edit button
+    card.querySelector('.edit-med').addEventListener('click', function() {
+        alert('Edit functionality would go here');
+    });
+    
+    // Delete button
+    card.querySelector('.delete-med').addEventListener('click', function() {
+        if (confirm('Are you sure you want to delete this medication?')) {
+            card.remove();
+            showSuccessMessage('Medication removed');
+        }
+    });
+}
+
+function getMedIcon(type) {
+    const icons = {
+        'antihistamine': 'capsules',
+        'nasal': 'spray-can',
+        'eye': 'eye-dropper',
+        'inhaler': 'lungs',
+        'emergency': 'syringe',
+        'other': 'pills'
+    };
+    return icons[type] || 'pills';
+}
+
+function formatDate(dateString) {
+    if (!dateString) return 'Not specified';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function searchMedications() {
+    const searchTerm = document.getElementById('med-search').value.toLowerCase();
+    const typeFilter = document.getElementById('med-type').value;
+    const priceFilter = document.getElementById('med-price').value;
+    
+    // In a real app, this would call an API
+    // Here we just simulate filtering
+    document.querySelectorAll('.medication-result-card').forEach(card => {
+        const name = card.querySelector('h4').textContent.toLowerCase();
+        const type = card.querySelector('.med-type').textContent.toLowerCase();
+        const price = card.querySelector('.med-meta span:first-child').textContent;
+        
+        const matchesSearch = name.includes(searchTerm) || searchTerm === '';
+        const matchesType = type.includes(typeFilter) || typeFilter === '';
+        const matchesPrice = 
+            (priceFilter === 'low' && price.includes('$15')) ||
+            (priceFilter === 'medium' && price.includes('$20')) ||
+            (priceFilter === 'high' && price.includes('$50')) ||
+            priceFilter === '';
+        
+        card.style.display = matchesSearch && matchesType && matchesPrice ? 'flex' : 'none';
+    });
+}
+
+function checkInteractions() {
+    const med1 = document.getElementById('med1').value;
+    const med2 = document.getElementById('med2').value;
+    
+    if (!med1 || !med2) {
+        alert('Please select two medications to check');
+        return;
+    }
+    
+    // Simulate interaction check
+    const noInteraction = document.querySelector('.no-interaction');
+    const interactionWarning = document.querySelector('.interaction-warning');
+    
+    // Hide both initially
+    noInteraction.style.display = 'none';
+    interactionWarning.style.display = 'none';
+    
+    // Simulate API call delay
+    setTimeout(() => {
+        // This is a simulation - in a real app you'd check against a database
+        if ((med1 === 'cetirizine' && med2 === 'diphenhydramine') || 
+            (med2 === 'cetirizine' && med1 === 'diphenhydramine')) {
+            // Show warning for this combination
+            interactionWarning.style.display = 'flex';
+        } else {
+            // Show no interaction message
+            noInteraction.style.display = 'flex';
+        }
+    }, 800);
+}
+
+function showSuccessMessage(message) {
+    const successMsg = document.querySelector('.success-message');
+    successMsg.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    successMsg.style.display = 'block';
+    setTimeout(() => {
+        successMsg.style.display = 'none';
+    }, 3000);
+}
     </script>
 </body>
 </html>
